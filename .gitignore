@@ -1,0 +1,50 @@
+# ===== Go =====
+# Compiled binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Build folders
+/bin/
+/build/
+/dist/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Vendor directory
+/vendor/
+
+# ===== Gin / Live Reload =====
+# Air live reload
+.air.toml
+/tmp/
+*.log
+
+# ===== Environment variables =====
+.env
+.env.*
+
+# ===== macOS =====
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ===== Editors =====
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== Test / Coverage =====
+coverage.out
+
+
+*.db
+*.sqlite
+*.sqlite3
