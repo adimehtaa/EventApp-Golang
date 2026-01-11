@@ -67,4 +67,8 @@ func main() {
 	for example
 	: migrate create -ext sql -dir ./cmd/migrate/migrations -seq create_users_table
 
+# Run migration
+- go run ./cmd/migrate/main.go up
+- see in root data.db file is created
+
 */
