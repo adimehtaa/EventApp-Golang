@@ -5,6 +5,8 @@ import (
 	"app-event/internal/env"
 	"database/sql"
 	"log"
+
+	_ "github.com/joho/godotenv/autoload"
 )
 
 type application struct {
