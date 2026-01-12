@@ -27,6 +27,7 @@ go.work.sum
 *.log
 
 # ===== Environment variables =====
+!.env.sample
 .env
 .env.*
 
