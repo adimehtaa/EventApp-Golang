@@ -45,6 +45,7 @@ go.work.sum
 # ===== Test / Coverage =====
 coverage.out
 
+backend/tmp
 
 *.db
 *.sqlite

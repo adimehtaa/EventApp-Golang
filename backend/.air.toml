@@ -1,0 +1,44 @@
+# .air.toml (LATEST STYLE)
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  # Build ONLY the API main package
+  cmd = "go build -o ./tmp/api ./cmd/api"
+
+  # What Air should run after build
+  entrypoint = "./tmp/api"
+
+  # Delay before rebuild (ms)
+  delay = 1000
+
+  # Watch only Go files
+  include_ext = ["go"]
+
+  # Exclude directories
+  exclude_dir = [
+    "tmp",
+    "vendor",
+    "testdata",
+    ".git"
+  ]
+
+  # Ignore test files
+  exclude_regex = ["_test.go"]
+
+  # Log build errors
+  log = "build-errors.log"
+
+  # Kill old process immediately
+  kill_delay = "0s"
+
+[log]
+  time = false
+  silent = false
+
+[misc]
+  clean_on_exit = true
+
+[screen]
+  clear_on_rebuild = false
+  keep_scroll = true
