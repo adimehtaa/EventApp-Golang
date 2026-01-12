@@ -13,7 +13,7 @@ import (
 type application struct {
 	port      int
 	jwtSecret string
-	model     database.Models
+	models    database.Models
 }
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 	app := &application{
 		port:      env.GetEnvInteger("PORT", 8080),
 		jwtSecret: env.GetEnvString("JWT_SECRET", "Some-Secret-808080"),
-		model:     models,
+		models:    models,
 	}
 
 	if err := app.serve(); err != nil {
