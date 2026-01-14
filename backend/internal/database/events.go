@@ -12,8 +12,8 @@ type EventModel struct {
 
 type Events struct {
 	ID          int    `json:"id"`
-	OwnerID     string `json:"owner_id" binding:"required,min=3"`
-	Name        string `json:"name" binding:"required,min=10"`
+	OwnerID     int    `json:"owner_id" binding:"required"`
+	Name        string `json:"name" binding:"required"`
 	Description string `json:"description" binding:"required,min=10"`
 	Date        string `json:"date" binding:"required,datetime=2006-01-02"`
 	Location    string `json:"location" binding:"required,min=3"`
@@ -23,9 +23,9 @@ func (m *EventModel) Insert(event *Events) error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*3)
 	defer cancel()
 
-	query := "INSERT INTO events (owner_id , name , description , date , location) VALUES($1 , $2, $3, $4, $5)"
+	query := "INSERT INTO events (owner_id , name , description , date , location) VALUES($1 , $2, $3, $4, $5) RETURNING id"
 
-	return m.DB.QueryRowContext(ctx, query, event.OwnerID, event.Name, event.Description, event.Date, event.Location).Scan(event.ID)
+	return m.DB.QueryRowContext(ctx, query, event.OwnerID, event.Name, event.Description, event.Date, event.Location).Scan(&event.ID)
 }
 
 func (m *EventModel) Update(event *Events) error {
