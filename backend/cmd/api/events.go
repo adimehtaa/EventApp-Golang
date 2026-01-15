@@ -224,7 +224,7 @@ func (app *application) getAttendeesForEvent(c *gin.Context) {
 		return
 	}
 
-	users, err := app.models.Events.GetAttendeeByEvent(eventId)
+	users, err := app.models.Attendees.GetAttendeeByEvent(eventId)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve attendees"})
 		return
