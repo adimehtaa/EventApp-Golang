@@ -25,3 +25,23 @@ func (m *UserModel) Insert(user *Users) error {
 
 	return m.DB.QueryRowContext(ctx, query, user.Email, user.Password, user.Email).Scan(&user.Id)
 }
+
+func (m *UserModel) Get(id int) (*Users, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*3)
+	defer cancel()
+
+	query := "SELECT * FROM users WHERE id = $1"
+
+	var user Users
+
+	err := m.DB.QueryRowContext(ctx, query, id).Scan(&user.Email, &user.Id, &user.Name, &user.Password)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	return &user, nil
+}
