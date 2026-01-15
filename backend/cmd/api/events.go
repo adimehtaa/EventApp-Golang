@@ -190,7 +190,7 @@ func (app *application) addAttendeeToEvent(c *gin.Context) {
 		return
 	}
 
-	existingAttendee, err := app.models.Attendees.GetByEventAndAttendee(event.ID, userToAdd.ID)
+	existingAttendee, err := app.models.Attendees.GetByEventAndAttendee(event.ID, userToAdd.Id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to check attendee"})
 		return
@@ -202,7 +202,7 @@ func (app *application) addAttendeeToEvent(c *gin.Context) {
 
 	attendee := database.Attendees{
 		EventId: event.ID,
-		UserId:  userToAdd.ID,
+		UserId:  userToAdd.Id,
 	}
 
 	_, err = app.models.Attendees.Insert(&attendee)
@@ -274,7 +274,7 @@ func (app *application) getEventsByAttendee(c *gin.Context) {
 		return
 	}
 
-	events, err := app.models.Events.GetByAttendee(id)
+	events, err := app.models.Attendees.GetEventByAttendee(id)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Fail to get events"})
